@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssh-server 
 # Installiert sshd in einem Debian-basierten Image. [web:278]
 
 RUN useradd -m -s /bin/bash gemini \
+ && usermod -p '*' gemini \
  && mkdir -p /home/gemini/.ssh /var/run/sshd \
  && chown -R gemini:gemini /home/gemini/.ssh \
  && chmod 700 /home/gemini/.ssh
