@@ -1,0 +1,29 @@
+services:
+  gemini-cli:
+    build: ./gemini-cli
+    container_name: gemini-cli
+    networks: [internal]
+    expose:
+      - "22"
+    secrets:
+      - gemini_authorized_key
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    networks: [internal]
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./ssh/n8n_to_gemini:/run/secrets/n8n_to_gemini:ro
+
+networks:
+  internal: {}
+
+volumes:
+  n8n_data: {}
+
+secrets:
+  gemini_authorized_key:
+    file: ./ssh/authorized_keys

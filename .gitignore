@@ -1,0 +1,8 @@
+# Secrets / Credentials
+.env
+ssh/n8n_to_gemini
+**/*.pem
+**/*.key
+
+# Optional: known_hosts etc.
+**/known_hosts
