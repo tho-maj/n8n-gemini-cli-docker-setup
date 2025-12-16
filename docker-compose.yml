@@ -17,6 +17,8 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./ssh/n8n_to_gemini:/run/secrets/n8n_to_gemini:ro
+    env_file:
+      - .env
 
 networks:
   internal: {}
