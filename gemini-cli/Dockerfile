@@ -12,6 +12,9 @@ RUN useradd -m -s /bin/bash gemini \
  && chmod 700 /home/gemini/.ssh
 # User + SSH-Verzeichnis. [web:278]
 
+RUN npm install -g @google/gemini-cli@latest && npm cache clean --force
+# Installiert Gemini CLI global. [web:194]
+
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh && chmod 755 /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
